@@ -13,16 +13,19 @@ public:
     int num; // プレイヤーの手札の数字
     int total;
 
-    void cards(int T);
-    void getName();
-    void totalNum();
-};
-
-class CARD{
-  
+    void getName(); //プレイヤーの名前を取得する関数
+    void cards(int T);//カードをT枚ランダムに引く関数
+    void totalNum();//カードの数を合計する関数
 };
 
 string ans; //各質問に対する入力値
+
+//プレイヤーの名前を取得する関数
+void player::getName(){
+    cout << "Type your name here!" << endl;
+    cout << "▷ " ;
+    cin >> name;
+}
 
 //カードをT枚ランダムに引く関数
 void player::cards(int T){
@@ -39,16 +42,12 @@ void player::cards(int T){
         }
 }
 
-//カードの枚数を合計する関数
+//カードの数を合計する関数
 void player::totalNum(){
-    total = accumulate(hand.begin(), hand.end(), 0);
-}
-
-//プレイヤーの名前を取得する関数
-void player::getName(){
-    cout << "Type your name here!" << endl;
-    cout << "▷ " ;
-    cin >> name;
+    total = 0;
+    for (auto itr = hand.begin(); itr != hand.end(); ++itr) {
+            total += *itr;
+        }
 }
 
 int main()
@@ -57,9 +56,9 @@ int main()
     player COM;
     
     player1.getName();
-    cout << "Welcome to the Casino, " << player1.name << "!" << endl;
+    cout << "Welcome to Black Jack the game," << player1.name << "!" << endl;
     Q1:
-    cout << "Do you wanna play Black Jack, " << player1.name << "? (y/n)"<< endl;
+    cout << "Do you wanna play Black Jack," << player1.name << "? (y/n)"<< endl;
     cin >> ans;
     if (ans == "n") {cout << "See you later!" << endl;}
     else if(ans == "y"){
